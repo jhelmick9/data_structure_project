@@ -6,13 +6,6 @@ from Bst import BinarySearchTree
 # Location where player records will be stored
 DATA_FILE = Path(__file__).parent / "players_1000.jsonl"
 
-# baseball players
-players = [
-    {"id": 1, "name": "Jayden Helmick", "team": "Muskingum", "position": "P"},
-    {"id": 2, "name": "Noah Winland", "team": "Muskingum", "position": "SS"},
-    {"id": 3, "name": "Weston Hartman", "team": "Muskingum", "position": "1B"}
-]
-
 # Create the file
 if not DATA_FILE.exists():
     raise FileNotFoundError(
@@ -23,8 +16,7 @@ if not DATA_FILE.exists():
 with open(DATA_FILE, "r", encoding="utf-8") as file:
     stored_players = [json.loads(line) for line in file]
 
-print(f"Loaded {len(stored_players)} players:")
-
+print(f"{len(stored_players)} players:")
 
 
 
@@ -42,15 +34,15 @@ def linear_search(players, target_id):
     return None, comparisons
 
 
-search_id = int(input("Enter a Player ID to search for: "))
+search_id = int(input("Enter Player ID to search for: "))
 
 result, comparisons = linear_search(stored_players, search_id)
 
 if result:
-    print("Player Found!")
+    print("Player Found")
     print(result)
 else:
-    print("Player not found.")
+    print("Player not found")
 
 print(f"Total comparisons: {comparisons}")
 
@@ -83,19 +75,19 @@ build_balanced_tree(sorted_players)
 # BST
 bst_result, bst_comparisons = bst.search(search_id)
 
-print("\n--- BST Search Results ---")
+print("\nBST Search Results")
 
 if bst_result is not None:
-    print("Player Found!")
+    print("Player Found")
     print(bst_result)
 else:
-    print("Player not found.")
+    print("Player not found")
 
 print(f"BST Comparisons: {bst_comparisons}")
 
 
-# Make sure both search algorithms return the same result
-print("\n--- Verification ---")
+# Make sure both search return the same result
+print("\nVerification ")
 
 if result == bst_result:
     print("Both algorithms returned the same result")
